@@ -10,10 +10,6 @@ Prerequisites:
 $ sudo dnf install \
     butane \
     coreos-installer \
-    libvirt \
-    libvirt-daemon-kvm \
-    virt-install \
-    virt-manager \
     qemu-kvm
 ```
 
@@ -23,7 +19,7 @@ Fedora CoreOS QEMU image is downloaded by [CoreOS Installer](https://coreos.gith
 
 ```sh
 $ ./up-fedora-coreos.sh
-$ virsh console coreos-1
+$ socat - UNIX-CONNECT:/tmp/coreos-1-console.sock
 ...
 [stephane@stephane-coreos ~]$ hostnamectl
      Static hostname: stephane-coreos
@@ -46,9 +42,15 @@ OS Support Remaining: 7month 2w 4d
         Firmware Age: 11y 5month 3w 2d
 ```
 
+I can also connect to VM with *ssh*:
+
+```
+$ ssh -p 2222 stephane@127.0.0.1
+```
+
 ## Teardown
 
 ```sh
-$ virsh destroy coreos-1
-$ virsh undefine coreos-1 --remove-all-storage
+$ systemctl --user stop coreos-1
+$ rm disks/*.qcow2
 ```
