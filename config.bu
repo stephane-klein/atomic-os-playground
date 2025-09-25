@@ -2,6 +2,14 @@ variant: fcos
 version: 1.1.0
 systemd:
   units:
+    - name: getty@tty1.service
+      dropins:
+      - name: autologin-core.conf
+        contents: |
+          [Service]
+          ExecStart=
+          ExecStart=-/usr/sbin/agetty --autologin stephane --noclear %I $TERM
+
     - name: serial-getty@ttyS0.service
       dropins:
       - name: autologin-core.conf
@@ -29,3 +37,8 @@ storage:
       contents:
         inline: |
           stephane-coreos
+    # https://docs.fedoraproject.org/en-US/fedora-coreos/sysconfig-setting-keymap/
+    - path: /etc/vconsole.conf
+      mode: 0644
+      contents:
+        inline: KEYMAP=fr

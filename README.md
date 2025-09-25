@@ -56,3 +56,33 @@ Teardown
 $ systemctl --user stop coreos-1
 $ rm disks/*.qcow2
 ```
+
+
+## Creating customized CoreOS ISO
+
+Prerequisites:
+
+```
+$ sudo dnf install \
+    butane \
+    coreos-installer \
+    pv
+```
+
+```sh
+$ ./create-coreos-custom-iso.sh
+```
+
+Execute `lsblk` to identify USB key:
+
+```
+$ lsblk
+```
+
+Copy `images/fedora-coreos-custom.iso` to USB key:
+
+```sh
+$ sudo pv images/fedora-coreos-custom.iso | sudo dd of=/dev/sda bs=4M oflag=sync
+```
+
+Then, boot from the USB stick and you should see the CoreOS installation.
