@@ -4,6 +4,8 @@ I developed this playground on Fedora 42.
 
 ## CoreOS
 
+### Launch Fedora CoreOS in QEMU
+
 Prerequisites:
 
 ```
@@ -48,7 +50,7 @@ I can also connect to VM with *ssh*:
 $ ssh -p 2222 stephane@127.0.0.1
 ```
 
-## Teardown
+Teardown
 
 ```sh
 $ systemctl --user stop coreos-1
