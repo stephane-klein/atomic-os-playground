@@ -74,16 +74,6 @@ $ sudo dnf install \
 $ ./create-coreos-custom-iso.sh
 ```
 
-Execute `lsblk` to identify USB key:
-
-```
-$ lsblk
-```
-
-Copy `images/fedora-coreos-custom.iso` to USB key:
-
-```sh
-$ sudo pv images/fedora-coreos-custom.iso | sudo dd of=/dev/sda bs=4M oflag=sync
-```
+Use [Fedora Media Writer](https://flathub.org/en/apps/org.fedoraproject.MediaWriter) to write `images/fedora-coreos-custom.iso` to USB Key.
 
 Then, boot from the USB stick and you should see the CoreOS installation.
