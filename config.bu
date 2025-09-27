@@ -19,6 +19,7 @@ systemd:
           ExecStart=
           # Add new Execstart with `-` prefix to ignore failure`
           ExecStart=-/usr/sbin/agetty --autologin stephane --noclear %I $TERM
+
 passwd:
   users:
     - name: stephane
@@ -37,6 +38,7 @@ storage:
       contents:
         inline: |
           stephane-coreos
+
     # https://docs.fedoraproject.org/en-US/fedora-coreos/sysconfig-setting-keymap/
     - path: /etc/vconsole.conf
       mode: 0644
