@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+set -e
+
+cd "$(dirname "$0")/"
+
+# Last release https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/42.20250901.3.0/x86_64/fedora-coreos-42.20250901.3.0-qemu.x86_64.qcow2.xz
+if [ ! -f "images/fedora-coreos-42.20250526.3.0-qemu.x86_64.qcow2" ]; then
+    wget \
+        https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/42.20250526.3.0/x86_64/fedora-coreos-42.20250526.3.0-qemu.x86_64.qcow2.xz \
+        -O images/fedora-coreos-42.20250526.3.0-qemu.x86_64.qcow2.xz
+fi
+
+rm -f ./disks/coreos-1-disk.qcow2
+qemu-img create \
+    -f qcow2 \
+    -F qcow2 -b \
+    $(pwd)/images/fedora-coreos-42.20250526.3.0-qemu.x86_64.qcow2 \
+    ./disks/coreos-1-disk.qcow2 \
+    10G
+
+butane config.bu > config.ign
+
+IGNITION_CONFIG="$(pwd)/config.ign"
+
+systemctl --user is-active --quiet coreos-1 && systemctl --user stop coreos-1
+
+systemd-run --user --unit=coreos-1 \
+    qemu-system-x86_64 \
+        -name coreos-1 \
+        -machine type=q35,accel=kvm \
+        -cpu host \
+        -smp 2 \
+        -m 2048 \
+        -nographic \
+        -drive file=$(pwd)/disks/coreos-1-disk.qcow2,if=virtio,format=qcow2 \
+        -netdev user,id=net0,hostfwd=tcp::2222-:22 \
+        -device virtio-net-pci,netdev=net0 \
+        -fw_cfg name=opt/com.coreos/config,file=${IGNITION_CONFIG} \
+        -monitor unix:/tmp/coreos-1-monitor.sock,server,nowait \
+        -serial unix:/tmp/coreos-1-console.sock,server,nowait \
+
+ssh-keygen -R "[127.0.0.1]:2222"
+
+cat << EOF
+To enter in coreos-I VM, execute:
+
+$ socat - UNIX-CONNECT:/tmp/coreos-1-console.sock
+
+or
+
+$ ssh -p 2222 -o StrictHostKeyChecking=no stephane@127.0.0.1
+
+EOF

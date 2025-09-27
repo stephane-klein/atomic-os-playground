@@ -58,6 +58,13 @@ $ systemctl --user stop coreos-1
 $ rm disks/*.qcow2
 ```
 
+You can test to instantiate an old CoreOS release `42.20250526.3.0`:
+
+```sh
+$ ./up-old-fedora-coreos.sh
+$ ssh -p 2222 -o StrictHostKeyChecking=no stephane@127.0.0.1
+```
+
 
 ## Creating customized CoreOS ISO
 
