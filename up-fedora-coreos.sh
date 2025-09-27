@@ -40,3 +40,6 @@ systemd-run --user --unit=coreos-1 \
         -fw_cfg name=opt/com.coreos/config,file=${IGNITION_CONFIG} \
         -monitor unix:/tmp/coreos-1-monitor.sock,server,nowait \
         -serial unix:/tmp/coreos-1-console.sock,server,nowait \
+
+ssh-keygen -R "[127.0.0.1]:2222"
+

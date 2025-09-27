@@ -46,8 +46,9 @@ OS Support Remaining: 7month 2w 4d
 
 I can also connect to VM with *ssh*:
 
-```
-$ ssh -p 2222 stephane@127.0.0.1
+```sh
+$ ssh-keygen -R "[127.0.0.1]:2222"
+$ ssh -p 2222 -o StrictHostKeyChecking=no stephane@127.0.0.1
 ```
 
 Teardown
