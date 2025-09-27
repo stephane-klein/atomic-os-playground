@@ -43,3 +43,13 @@ systemd-run --user --unit=coreos-1 \
 
 ssh-keygen -R "[127.0.0.1]:2222"
 
+cat << EOF
+To enter in coreos-I VM, execute:
+
+$ socat - UNIX-CONNECT:/tmp/coreos-1-console.sock
+
+or
+
+$ ssh -p 2222 -o StrictHostKeyChecking=no stephane@127.0.0.1
+
+EOF
