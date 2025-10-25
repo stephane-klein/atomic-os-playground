@@ -2,7 +2,7 @@
 
 I developed this playground on Fedora 42.
 
-If you would like to better understand how [OSTree] works, I recommend studying [`./OSTreeTutorial.md`](./OSTreeTutorial.md).
+If you would like to better understand how [libostree](https://notes.sklein.xyz/libostree/) works, I recommend studying [`./OSTreeTutorial.md`](./OSTreeTutorial.md).
 
 ## CoreOS
 
