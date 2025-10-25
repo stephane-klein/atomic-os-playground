@@ -67,6 +67,9 @@ $ ./up-old-fedora-coreos.sh
 $ ssh -p 2222 -o StrictHostKeyChecking=no stephane@127.0.0.1
 ```
 
+### Install Fedora CoreOS ISO custom image on QEMU
+
+Go to [`./install-coreos-iso-on-qemu/`](./install-coreos-iso-on-qemu/).
 
 ### Creating customized CoreOS ISO
 
