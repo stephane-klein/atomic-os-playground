@@ -6,7 +6,7 @@ If you would like to better understand how [libostree](https://notes.sklein.xyz/
 
 ## CoreOS
 
-### Launch Fedora CoreOS in QEMU
+### Launch Fedora CoreOS Cloud Image in QEMU
 
 Prerequisites:
 
@@ -17,7 +17,7 @@ $ sudo dnf install \
     qemu-kvm
 ```
 
-I follow this officiel documentation to launch [CoreOS](https://notes.sklein.xyz/CoreOS/) instance locally on my Fedora Workstation: [Provisioning Fedora CoreOS on libvirt](https://docs.fedoraproject.org/en-US/fedora-coreos/provisioning-libvirt/).
+I follow this officiel documentation to launch [CoreOS](https://notes.sklein.xyz/CoreOS/) Cloud Image instance locally on Qemu VirtualMachine on my Fedora Workstation host: [Provisioning Fedora CoreOS on libvirt](https://docs.fedoraproject.org/en-US/fedora-coreos/provisioning-libvirt/).
 
 Fedora CoreOS QEMU image is downloaded by [CoreOS Installer](https://coreos.github.io/coreos-installer/).
 
