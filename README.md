@@ -68,7 +68,7 @@ $ ssh -p 2222 -o StrictHostKeyChecking=no stephane@127.0.0.1
 ```
 
 
-## Creating customized CoreOS ISO
+### Creating customized CoreOS ISO
 
 Prerequisites:
 
