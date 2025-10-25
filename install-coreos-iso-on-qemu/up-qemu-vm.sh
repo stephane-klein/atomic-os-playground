@@ -9,6 +9,8 @@ $ rm ./disks/coreos-disk.qcow2
 
 EOF
 
+mkdir -p disks/
+
 if [ ! -f "./disks/coreos-disk.qcow2" ]; then
     ... qemu-img create
         -f qcow2
