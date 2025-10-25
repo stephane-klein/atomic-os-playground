@@ -9,8 +9,6 @@ $ sudo dnf install \
     butane \
     coreos-installer \
     qemu-kvm \
-    swtpm \
-    swtpm-tools \
     edk2-ovmf
 ```
 
