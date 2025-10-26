@@ -71,6 +71,10 @@ $ ssh -p 2222 -o StrictHostKeyChecking=no stephane@127.0.0.1
 
 Go to [`./install-coreos-iso-on-qemu/`](./install-coreos-iso-on-qemu/).
 
+### Launch Fedora CoreOS in QEMU with LUKS and TPM2 emulation
+
+Go to [`./install-coreos-iso-on-qemu-with-luks/`](./install-coreos-iso-on-qemu-with-luks/).
+
 ### Creating customized CoreOS ISO
 
 Prerequisites:
