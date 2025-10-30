@@ -6,7 +6,7 @@ The TPM2 emulation is performed by [swtpm](https://github.com/stefanberger/swtpm
 
 This environment uses the UEFI implementation: [edk2-ovmf](https://github.com/tianocore/tianocore.github.io/wiki/OVMF).
 
-Prerequisites:
+**Prerequisites**
 
 In this playground, I use [Oils](https://oils.pub/). To install this shell, follow instructions: <https://github.com/oils-for-unix/oils/wiki/Oils-Deployments>.
 
@@ -22,7 +22,9 @@ $ sudo dnf install \
     edk2-ovmf
 ```
 
-Download the stable x86_64 metal ISO, generate the Ignition configuration, and build the custom ISO:
+**Getting started**
+
+Download the stable `x86_64` metal ISO, generate the Ignition configuration, and build the custom ISO:
 
 
 ```sh
