@@ -75,6 +75,10 @@ Go to [`./install-coreos-iso-on-qemu/`](./install-coreos-iso-on-qemu/).
 
 Go to [`./install-coreos-iso-on-qemu-with-luks/`](./install-coreos-iso-on-qemu-with-luks/).
 
+### Creating customized CoreOS ISO with LUKS for Baremetal
+
+Go to [`./install-coreos-iso-on-baremetal-with-luks/`](./install-coreos-iso-on-baremetal-with-luks/)
+
 ### Creating customized CoreOS ISO
 
 Prerequisites:
