@@ -9,7 +9,7 @@ This environment uses the UEFI implementation: [edk2-ovmf](https://github.com/ti
 This playground uses a [Tang](https://github.com/latchset/tang) server for *[Network-Bound Disk Encryption](https://notes.sklein.xyz/Network-Bound%20Disk%20Encryption/)*,
 launched via Docker (Tang Docker Image source code: <https://github.com/padhi-homelab/docker_tang>).
 
-The configuration uses a 2-threshold policy, meaning Clevis requires both TPM2 and Tang to unlock the encrypted LUKS `/var/` partition.
+The configuration uses a 2-threshold policy, meaning Clevis requires both TPM2 pin and Tang pin to unlock the encrypted LUKS `/var/` partition.
 If either is unavailable, Clevis prompts the user for the passphrase.
 
 
@@ -60,4 +60,26 @@ Teardown:
 ```sh
 $ systemctl --user stop "swtpm-qemu-coreos"
 $ rm -rf disks/ images/
+```
+
+## How to switch from 2 required ping to 1 or the opposite?
+
+If you want to change the threshold value, you can follow this method:
+
+```sh
+$ ssh -p 2222 -o StrictHostKeyChecking=no stephane@127.0.0.1
+root@stephane-coreos:/var/home/stephane# clevis luks list -d /dev/vda5
+1: sss '{"t":2,"pins":{"tang":[{"url":"http://10.0.2.2:1234"}],"tpm2":[{"hash":"sha256","key":"ecc"}]}}'
+root@stephane-coreos:/var/home/stephane# clevis luks unbind -d /dev/vda5 -s 1 -f
+root@stephane-coreos:/var/home/stephane# clevis luks list -d /dev/vda5
+root@stephane-coreos:/var/home/stephane#
+root@stephane-coreos:/var/home/stephane# clevis luks bind -d "/dev/vda5" sss '{"t":1,"pins":{"tpm2":{"hash":"sha256","key":"ecc"}, "tang":[{"url":"http://10.0.2.2:1234"}]}}'
+Enter existing LUKS password:
+The advertisement contains the following signing keys:
+
+dx9dNzgs-DeXg0SCBQW5rb7WQkSIN1B8MIgcO6WxJfI
+
+Do you wish to trust these keys? [ynYN] y
+root@stephane-coreos:/var/home/stephane# clevis luks list -d /dev/vda5
+1: sss '{"t":1,"pins":{"tang":[{"url":"http://10.0.2.2:1234"}],"tpm2":[{"hash":"sha256","key":"ecc"}]}}'
 ```
