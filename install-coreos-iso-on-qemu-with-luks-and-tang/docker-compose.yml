@@ -1,0 +1,14 @@
+services:
+  tang:
+    image: padhihomelab/tang:git.97cffa4e_git.95d3c029
+    ports:
+      - 1234:8080
+    volumes:
+      - tang:/db/
+    environment:
+      ENABLE_IPv4: 1
+      ENABLE_IPv6: 1
+
+volumes:
+  tang:
+    name: tang
